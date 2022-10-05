@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class Article extends Controller
 {
     public function create(){
-        return view('articles.create');
+        return view('articales.create');
     }
     // public function store(Request $request){
 
