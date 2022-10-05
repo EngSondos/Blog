@@ -13,7 +13,14 @@
 </head>
 
 <body>
-    @yield('content')
+    <div class="container">
+        <div class="row">
+            <div class="offset-3 col-6 mt-5 text-center">
+                @yield('content')
+
+            </div>
+        </div>
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

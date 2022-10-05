@@ -18,6 +18,5 @@ class Articale extends Controller
             "image"=>NULL,
             "category_id"=>$request->category_id
         ]);
-        dd($article);
     }
 }
