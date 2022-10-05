@@ -1,6 +1,15 @@
 @extends('../parent')
 @section('title', 'Create Articale')
 @section('content')
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Autem vitae quaerat mollitia nulla magni, quidem nobis
-    laudantium ducimus, omnis impedit minus aperiam. Fugiat officia quis corporis aliquid debitis tempore nulla!
+<form action="{{route('store')}}" method="post">
+    @csrf
+    <input type="" name="title" id="">
+    <input type="" name="body" id="">
+    <input type="" name="image" id="">
+    <input type="" name="category_id" id="">
+    <input type="submit" name="title" id="">
+
+
+
+</form>
 @endsection

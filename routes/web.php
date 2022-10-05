@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Article;
+use App\Http\Controllers\Articale;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,4 +18,6 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get("create", [Article::class, "create"]);
+Route::get("articale/create", [Articale::class, "create"]);
+
+Route::post('articale/store', [Articale::class, "store"])->name("store");
