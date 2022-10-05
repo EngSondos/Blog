@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Articale as ModelsArticale;
 use Illuminate\Http\Request;
 
 class Articale extends Controller
