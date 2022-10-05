@@ -18,6 +18,10 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+Route::get("articale/edit/{id}", [Articale::class, "edit"]);
+Route::post("articale/update", [Articale::class, "update"])->name("update");
+Route::get("articale/list", [Articale::class, "list"]);
+Route::get("articale/index", [Articale::class, "list"]);
 
 Route::get("articale/create", [Articale::class, "create"]);
 Route::post('articale/store', [Articale::class, "store"])->name("store");

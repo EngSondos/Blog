@@ -8,6 +8,7 @@
             <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure accusantium, ea officiis
                 eligendi eum vero molestias rem ab laudantium a voluptatibus accusamus enim tempore officia perferendis?
                 Doloremque, omnis. Officiis, sunt!.</p>
+                {{$articales[0]->category->name}}
         </div>
         <form action="" method="post">
             <input type="text" class="form-control" name="guest_name" placeholder="Name">
