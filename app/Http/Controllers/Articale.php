@@ -9,27 +9,37 @@ use Illuminate\Http\Request;
 
 class Articale extends Controller
 {
-    public function list(){
-      $articales= ModelsArticale::with(['category'])->get();
-      return view("articales.index",compact("articales"));
+    public function list()
+    {
+        $articales = ModelsArticale::with(['category'])->get();
+        return view("articales.index", compact("articales"));
     }
     public function create()
     {
-        return view('articales.create');
+      $categories = Category::all();
+    //   dd($categories);
+        return view('articales.create',compact("categories"));
     }
     public function store(Request $request)
     {
+        // dd($request->image);
+        if ($request->has('image')) {
+            $newImage = Media::upload($request->file('image'), public_path('images/articales'));
+            $data['image'] = $newImage;
+            $oldimage = ModelsArticale::select('image')->where('id', "=", $request->id)->get();
+            $patholdimage = public_path('images/articales/' . $oldimage);
+            Media::delete($patholdimage);
+        }
         $validation = $request->validate([
             'title' => 'required',
             'body' => 'required',
-            'image' => 'required',
-            'category_id' => "required|integer"
+            'category_id' => "required"
         ]);
         if ($validation) {
-            $article = ModelsArticale::create([
+             ModelsArticale::create([
                 "title" => $request->title,
                 "body" => $request->body,
-                "image" => " ",
+                "image" => $newImage,
                 "category_id" => $request->category_id
             ]);
             return redirect()->back()->with(["message" => "Article Created"]);
@@ -38,36 +48,41 @@ class Articale extends Controller
         }
     }
 
+
     public function edit($id)
     {
-        $articale=$this->getbyid($id);
-        return view("articales.update", compact('articale'));
+        $articale = $this->getbyid($id);
+        $categories = Category::all();
+
+        return view("articales.update", ["articale" =>compact('articale'),"categories"=>compact("categories")]);
     }
     public function update(Request $request)
     {
-        if($request->has('image')){
-            $newImage = Media::upload($request->file('image'),public_path('images/prodcuts'));
-            $data['image']=$newImage;
-            $oldimage =ModelsArticale::select('image')->where('id',"=",$request->id)->get();
-            $patholdimage= public_path('images/articales/'.$oldimage);
+        // dd($request);
+        if ($request->has('image')) {
+            $newImage = Media::upload($request->file('image'), public_path('images/articales'));
+            $data['image'] = $newImage;
+            $oldimage = ModelsArticale::select('image')->where('id', "=", $request->id)->get();
+            $patholdimage = public_path('images/articales/' . $oldimage);
             Media::delete($patholdimage);
-            // dd($request);
-        ModelsArticale::where("id", $request->id)->update([
-            "title" => $request->title,
-            "body" => $request->body,
-            "image" => " ",
-            "category_id" => $request->category_id
-        ]);
-        return redirect('articale/create')->with("message","updated");
-    }
-}
+        }
+        // echo($newImage);
+            ModelsArticale::where("id", $request->id)->update([
+                "title" => $request->title,
+                "body" => $request->body,
+                "image" => $newImage,
+                "category_id" => $request->category_id
+            ]);
+            return redirect('articale/list')->with("message", "updated");
+        }
+
     public function delete($id)
     {
-         ModelsArticale::destroy($id);
-         return redirect()->back()->with("message","Deleted");
+        ModelsArticale::destroy($id);
+        return redirect()->back()->with("message", "Deleted");
     }
-    public function getbyid($id){
- return  ModelsArticale::with(['category'])->find($id);
-
+    public function getbyid($id)
+    {
+        return  ModelsArticale::with(['category'])->find($id);
     }
 }
