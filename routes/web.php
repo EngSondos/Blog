@@ -1,5 +1,10 @@
 <?php
 
+// use App\Http\Controllers\BlockComment;
+
+use App\Http\Controllers\Comments;
+use App\Http\Controllers\Controller;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('create', [Comments::class,'create']);
+Route::get('show', function () {
+    return view('NewComment');
 });
+Route::post("store",[Comments::class,'store']);
