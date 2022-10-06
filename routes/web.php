@@ -1,5 +1,10 @@
 <?php
 
+// use App\Http\Controllers\BlockComment;
+
+use App\Http\Controllers\Comments;
+use App\Http\Controllers\Controller;
+
 use App\Http\Controllers\Articale;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
