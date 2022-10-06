@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Articale;
-use App\Http\Controllers\Category;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 Route::get("articale/edit/{id}", [Articale::class, "edit"]);
 Route::get("articale/delete/{id}", [Articale::class, "delete"])->name('articale.delete');
 
@@ -24,9 +23,9 @@ Route::get("articale/list", [Articale::class, "list"]);
 Route::get("articale/create", [Articale::class, "create"]);
 Route::post('articale/store', [Articale::class, "store"])->name("articale.store");
 
-Route::get('Category/index', [Category::class, "index"]);
-Route::get('Category/create', [Category::class, "create"]);
-Route::post('Category/store', [Category::class, "store"]);
-Route::get('Category/edit/{id}', [Category::class, "edit"]);
-Route::get('Category/delete/{id}', [Category::class, "delete"]);
-Route::post('Category/update', [Category::class, "update"]);
+Route::get('/add-category', [CategoryController::class, 'addCategory']);
+Route::post('/create-category', [CategoryController::class, 'createCategory'])->name('category.create');
+Route::get('/list-category', [CategoryController::class, 'getCategories']);
+Route::get('/delete-category/{id}', [CategoryController::class, 'delete']);
+Route::get('/edit-category/{id}', [CategoryController::class, 'edit']);
+Route::post('/update-category', [CategoryController::class, 'Update'])->name('category.update');
