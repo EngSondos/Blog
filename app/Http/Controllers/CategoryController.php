@@ -31,6 +31,6 @@ class CategoryController extends Controller
         $category = Category::find($request->id);
         $category->name = $request->name;
         $category->save();
-        return back()->with('category_updated', 'Category has been Updated Successfully');
+        return redirect('list-category');
     }
 }
