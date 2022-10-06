@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Category;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +13,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('Category/index', [Category::class, "index"]);
-Route::get('Category/create', [Category::class, "create"]);
-Route::post('Category/store', [Category::class, "store"]);
-Route::get('Category/edit/{id}', [Category::class, "edit"]);
-Route::get('Category/delete/{id}', [Category::class, "delete"]);
-Route::post('Category/update', [Category::class, "update"]);
+Route::get('/add-category', [CategoryController::class, 'addCategory']);
+Route::post('/create-category', [CategoryController::class, 'createCategory'])->name('category.create');
+Route::get('/list-category', [CategoryController::class, 'getCategories']);
+Route::get('/delete-category/{id}', [CategoryController::class, 'delete']);
+Route::get('/edit-category/{id}', [CategoryController::class, 'edit']);
+Route::post('/update-category', [CategoryController::class, 'Update'])->name('category.update');
