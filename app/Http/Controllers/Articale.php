@@ -16,7 +16,7 @@ class Articale extends Controller
     }
     public function create()
     {
-      $categories = Category::all();
+        $categories = Category::all();
     //   dd($categories);
         return view('articales.create',compact("categories"));
     }
