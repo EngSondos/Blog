@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/admin/show',[admin::class,'show']);
+// Route::post('/admin/store',[admin::class,'store']);
+Route::get('/admin/edit/{id}',[admin::class,'edit']);
+ Route::post('/admin/update',[admin::class,'update']);
+ Route::get('/admin/delete/{id}',[admin::class,'delete']);
