@@ -6,7 +6,7 @@
 </div>
 {{$message ?? ""}}
 {{$error ??""}}
-    <form class="text-left !important" action="{{route('update')}}" method="POST" enctype="multipart/form-data">
+    <form class="text-left !important" action="{{route('articale.update')}}" method="POST" enctype="multipart/form-data">
         @csrf
         <input type="hidden" value="{{$articale['articale']->id}}" class="form-control" name="id">
         <div class="form-group">

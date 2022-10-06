@@ -17,10 +17,12 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get("articale/edit/{id}", [Articale::class, "edit"]);
-Route::post("articale/update", [Articale::class, "update"])->name("update");
+Route::get("articale/delete/{id}", [Articale::class, "delete"])->name('articale.delete');
+
+Route::post("articale/update", [Articale::class, "update"])->name("articale.update");
 Route::get("articale/list", [Articale::class, "list"]);
 Route::get("articale/create", [Articale::class, "create"]);
-Route::post('articale/store', [Articale::class, "store"])->name("store");
+Route::post('articale/store', [Articale::class, "store"])->name("articale.store");
 
 Route::get('Category/index', [Category::class, "index"]);
 Route::get('Category/create', [Category::class, "create"]);

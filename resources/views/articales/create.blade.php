@@ -6,7 +6,7 @@
 </div>
 {{$message ?? ""}}
 {{$error ??""}}
-    <form class="text-left !important" action="{{route('store')}}" method="POST" enctype="multipart/form-data">
+    <form class="text-left !important" action="{{route('articale.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for="title">Title</label>

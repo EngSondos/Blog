@@ -15,10 +15,7 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="offset-3 col-6 mt-5 text-center">
                 @yield('content')
-
-            </div>
         </div>
     </div>
 
