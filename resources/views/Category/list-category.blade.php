@@ -1,32 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <title>Categories</title>
-</head>
-
-<body>
-    <table class="table text-center my-5">
-        <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Update</th>
-            <th>Delete</th>
-        </tr>
-        @foreach ($category as $c)
+@extends('../parent')
+@section('title', 'Lisr All Categories')
+@section('content')
+    <div class="offset-2 col-8 text-primary h1 text-center !important mt-5">
+        List All Categories
+    </div>
+    <div class="offset-2 col-8 mt-5 text-center">
+        <table class="table text-center my-5">
             <tr>
-                <td>{{ $c->id }}</td>
-                <td>{{ $c->name }}</td>
-                <td><a href="/edit-category/{{ $c->id }}" class="btn btn-outline-success">Edit</a></td>
-                <td><a href="/delete-category/{{ $c->id }}" class="btn btn-outline-danger">Delete</a></td>
+                <th>#</th>
+                <th>Name</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
-        @endforeach
-    </table>
-</body>
-
-</html>
+            @foreach ($category as $c)
+                <tr>
+                    <td>{{ $c->id }}</td>
+                    <td>{{ $c->name }}</td>
+                    <td><a href="/edit-category/{{ $c->id }}" class="btn btn-outline-primary w-50">Edit</a></td>
+                    <td><a href="/delete-category/{{ $c->id }}" class="btn btn-outline-danger w-50">Delete</a></td>
+                </tr>
+            @endforeach
+        </table>
+    </div>
+@endsection

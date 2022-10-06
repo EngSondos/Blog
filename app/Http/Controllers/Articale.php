@@ -36,7 +36,7 @@ class Articale extends Controller
             'category_id' => "required"
         ]);
         if ($validation) {
-             ModelsArticale::create([
+            ModelsArticale::create([
                 "title" => $request->title,
                 "body" => $request->body,
                 "image" => $newImage,
