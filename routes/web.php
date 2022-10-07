@@ -47,10 +47,3 @@ Route::prefix("category")->group(function(){
         });
     });
 });
-
-Route::post('comment/store', [Comments::class,'store'])->name("comment.store");
-
-Route::get('/admin/show',[admin::class,'show']);
-Route::get('/admin/edit/{id}',[admin::class,'edit']);
- Route::post('/admin/update',[admin::class,'update']);
- Route::get('/admin/delete/{id}',[admin::class,'delete']);
