@@ -7,16 +7,11 @@ use App\Http\Controllers\Controller;
 
 use App\Http\Controllers\Articale;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\admin;
-use Illuminate\Support\Facades\Route;
-<<<<<<< HEAD
-=======
 use App\Http\Controllers\Admin;
 
 use App\Http\Controllers\user;
 use Illuminate\Support\Facades\Route;
 
->>>>>>> 66fd26f54db640f2ace4a3fba132427d1cfa403b
 
 /*
 |--------------------------------------------------------------------------
@@ -45,7 +40,6 @@ Route::prefix("articale")->group(function(){
 Route::prefix("category")->group(function(){
     Route::name("category.")->group(function(){
         Route::controller(CategoryController::class)->group(function(){
-
             Route::get('/add',  'addCategory')->name('add');
             Route::post('/create', 'createCategory')->name("create");
             Route::get('/list',  'getCategories')->name('list');
