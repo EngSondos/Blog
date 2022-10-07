@@ -5,11 +5,7 @@
 use App\Http\Controllers\Comments;
 use App\Http\Controllers\Articale;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\Admin;
 use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\user;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +17,10 @@ use App\Http\Controllers\user;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get("/", [Articale::class , 'list']);
 
-    Route::prefix("articale")->group(function () {
+Route::get("/", [Articale::class, 'list']);
+
+Route::prefix("articale")->group(function () {
     Route::name('articale.')->group(function () {
         Route::controller(Articale::class)->group(function () {
             Route::get("/edit/{id}", "edit")->name('edit');
@@ -38,8 +35,6 @@ Route::get("/", [Articale::class , 'list']);
 Route::prefix("category")->group(function () {
     Route::name("category.")->group(function () {
         Route::controller(CategoryController::class)->group(function () {
-
-
             Route::get('/add',  'addCategory')->name('add');
             Route::post('/create', 'createCategory')->name("create");
             Route::get('/list',  'getCategories')->name('list');
@@ -50,5 +45,3 @@ Route::prefix("category")->group(function () {
     });
 });
 Route::post('comment/store', [Comments::class, 'store'])->name("comment.store");
-
-
