@@ -1,5 +1,5 @@
 @extends('../parent')
-@section('title', 'List All Articales')
+@section('title', 'List All Articles')
 @section('content')
     <div class="offset-2 mt-5 col-8 text-primary h1 text-center !important">
         All Articales
