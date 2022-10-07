@@ -21,29 +21,36 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get("articale/edit/{id}", [Articale::class, "edit"]);
-Route::get("articale/delete/{id}", [Articale::class, "delete"])->name('articale.delete');
+Route::prefix("articale")->group(function(){
+ Route::name('articale.')->group(function(){
+    Route::controller(Articale::class)->group(function(){
+        Route::get("/edit/{id}", "edit")->name('edit');
+        Route::get("/delete/{id}", "delete")->name('delete');
+        Route::post("/update", "update")->name("update");
+        Route::get("/list", "list")->name('list');
+        Route::get("/create",  "create")->name('create');
+        Route::post('/store', "store")->name("store");
+    });
+});
+});
 
-Route::post("articale/update", [Articale::class, "update"])->name("articale.update");
-Route::get("articale/list", [Articale::class, "list"]);
-Route::get("articale/create", [Articale::class, "create"]);
-Route::post('articale/store', [Articale::class, "store"])->name("articale.store");
+Route::prefix("category")->group(function(){
+    Route::name("category.")->group(function(){
+        Route::controller(CategoryController::class)->group(function(){
 
-Route::get('/add-category', [CategoryController::class, 'addCategory']);
-Route::post('/create-category', [CategoryController::class, 'createCategory'])->name('category.create');
-Route::get('/list-category', [CategoryController::class, 'getCategories']);
-Route::get('/delete-category/{id}', [CategoryController::class, 'delete']);
-Route::get('/edit-category/{id}', [CategoryController::class, 'edit']);
-Route::post('/update-category', [CategoryController::class, 'Update'])->name('category.update');
+            Route::get('/add',  'addCategory')->name('add');
+            Route::post('/create', 'createCategory')->name("create");
+            Route::get('/list',  'getCategories')->name('list');
+            Route::get('/delete', 'delete')->name('delete');
+            Route::get('/edit/{id}', 'edit')->name('edit');
+            Route::post('/category', 'Update')->name('update');
+        });
+    });
+});
 
 Route::post('comment/store', [Comments::class,'store'])->name("comment.store");
-// Route::get('show', function () {
-//     return view('NewComment');
-// });
-// Route::post("comment/store",[Comments::class,'store']);
 
 Route::get('/admin/show',[admin::class,'show']);
-// Route::post('/admin/store',[admin::class,'store']);
 Route::get('/admin/edit/{id}',[admin::class,'edit']);
  Route::post('/admin/update',[admin::class,'update']);
  Route::get('/admin/delete/{id}',[admin::class,'delete']);
