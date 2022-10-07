@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Http\Controllers\Articale;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\admin;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,3 +41,9 @@ Route::post('comment/store', [Comments::class,'store'])->name("comment.store");
 //     return view('NewComment');
 // });
 // Route::post("comment/store",[Comments::class,'store']);
+
+Route::get('/admin/show',[admin::class,'show']);
+// Route::post('/admin/store',[admin::class,'store']);
+Route::get('/admin/edit/{id}',[admin::class,'edit']);
+ Route::post('/admin/update',[admin::class,'update']);
+ Route::get('/admin/delete/{id}',[admin::class,'delete']);
