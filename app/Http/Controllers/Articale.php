@@ -11,7 +11,7 @@ class Articale extends Controller
 {
     public function list()
     {
-        $articales = ModelsArticale::with(['category'])->get();
+        $articales = ModelsArticale::with(['category','comment'])->get();
         return view("articales.index", compact("articales"));
     }
     public function create()
