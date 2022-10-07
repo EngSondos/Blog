@@ -6,9 +6,6 @@ use App\Http\Controllers\Comments;
 use App\Http\Controllers\Articale;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
-
-// use App\Http\Controllers\BlockComment;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get("/", [Articale::class, 'list']);
 
 Route::prefix("articale")->group(function () {
     Route::name('articale.')->group(function () {
@@ -45,5 +43,4 @@ Route::prefix("category")->group(function () {
         });
     });
 });
-
 Route::post('comment/store', [Comments::class, 'store'])->name("comment.store");
