@@ -36,8 +36,6 @@ Route::prefix("articale")->group(function () {
 Route::prefix("category")->group(function () {
     Route::name("category.")->group(function () {
         Route::controller(CategoryController::class)->group(function () {
-
-
             Route::get('/add',  'addCategory')->name('add');
             Route::post('/create', 'createCategory')->name("create");
             Route::get('/list',  'getCategories')->name('list');
