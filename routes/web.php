@@ -9,6 +9,14 @@ use App\Http\Controllers\Articale;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\admin;
 use Illuminate\Support\Facades\Route;
+<<<<<<< HEAD
+=======
+use App\Http\Controllers\Admin;
+
+use App\Http\Controllers\user;
+use Illuminate\Support\Facades\Route;
+
+>>>>>>> 66fd26f54db640f2ace4a3fba132427d1cfa403b
 
 /*
 |--------------------------------------------------------------------------
