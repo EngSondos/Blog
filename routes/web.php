@@ -34,3 +34,9 @@ Route::get('/list-category', [CategoryController::class, 'getCategories']);
 Route::get('/delete-category/{id}', [CategoryController::class, 'delete']);
 Route::get('/edit-category/{id}', [CategoryController::class, 'edit']);
 Route::post('/update-category', [CategoryController::class, 'Update'])->name('category.update');
+
+Route::post('comment/store', [Comments::class,'store'])->name("comment.store");
+// Route::get('show', function () {
+//     return view('NewComment');
+// });
+// Route::post("comment/store",[Comments::class,'store']);
