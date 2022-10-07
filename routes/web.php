@@ -10,6 +10,9 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\admin;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\user;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,6 +23,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Route::group(["middleware"=>"auth"],function(){
+Route::get('nav',[Admin::class,"index"]);
+Route::get('Admin/create',[Admin::class,"create"])->middleware("admin");
+Route::post('Admin/store',[Admin::class,"store"])->middleware("admin");
+Route::get('Admin/edit/{id}',[Admin::class,"edit"])->middleware("admin");
+Route::get('Admin/delete/{id}',[Admin::class,"delete"])->middleware("admin");
+Route::post('Admin/update',[Admin::class,"update"])->middleware("admin");
 
 Route::prefix("articale")->group(function(){
  Route::name('articale.')->group(function(){
@@ -54,3 +64,6 @@ Route::get('/admin/show',[admin::class,'show']);
 Route::get('/admin/edit/{id}',[admin::class,'edit']);
  Route::post('/admin/update',[admin::class,'update']);
  Route::get('/admin/delete/{id}',[admin::class,'delete']);
+
+Route::get("login",[user::class,"login"])->name("login")->middleware("guest");
+Route::post("loginrequest",[user::class,"loginRequest"]);;
