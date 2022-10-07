@@ -1,5 +1,5 @@
 @extends('../parent')
-@section('title', 'List All Articales')
+@section('title', 'List All Articles')
 @section('content')
     @foreach ($articales as $articale)
         <div class="offset-3 col-6 mt-5 text-center">

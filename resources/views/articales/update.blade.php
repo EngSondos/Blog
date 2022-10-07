@@ -1,8 +1,8 @@
 @extends('../parent')
-@section('title', 'Update Articale')
+@section('title', 'Update Article')
 @section('content')
     <div class="offset-2 col-8 text-primary h1 text-center !important">
-        Update Articales
+        Update Articles
     </div>
     {{ $message ?? '' }}
     {{ $error ?? '' }}
