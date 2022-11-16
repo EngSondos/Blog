@@ -22,14 +22,13 @@ use Illuminate\Support\Facades\Route;
 Route::get("login",[LoginController::class,'login'])->name('Login');
 Route::Post("loginrequest",[LoginController::class,'LoginRequest'])->name('LoginR');
 Route::get('logout',[LogoutController::class,'logout'])->name('logout');
-Route::get("/", [Articale::class, 'list']);
+Route::get("/", [Articale::class, 'list'])->name('articale.list');
 Route::middleware('isLoggedIn')->prefix("articale")->group(function () {
     Route::name('articale.')->group(function () {
         Route::controller(Articale::class)->group(function () {
             Route::get("/edit/{articale}", "edit")->name('edit');
             Route::get("/delete/{articale}", "delete")->name('delete');
             Route::put("/update/{articale}", "update")->name("update");
-            Route::get("/list", "list")->name('list');
             Route::get("/create",  "create")->name('create');
             Route::post('/store', "store")->name("store");
         });
