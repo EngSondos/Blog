@@ -10,9 +10,8 @@
                 {{ Session::get('category_updated') }}
             </div>
         @endif
-        <form action="{{ route('category.update') }}" method="POST">
+        <form action="{{ route('category.update',$category->id) }}" method="POST">
             @csrf
-            <input type="hidden" name="id" value="{{ $category->id }}">
             <div class="mb-3">
                 <input type="text" class="form-control" id="name" name="name" value="{{ $category->name }}">
             </div>

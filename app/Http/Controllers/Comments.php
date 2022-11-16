@@ -2,27 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCommentRequest;
 use App\Models\Comment;
+use Illuminate\Contracts\Cache\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class Comments extends Controller
 {
     //
-
-    public function show()
+    public function store(StoreCommentRequest $request)
     {
-        return view("NewComment");
-    }
-    public function store(Request $request)
-    {
+        $data =$request->except('body','_token');
         $blockWords = ["my", "comment", "is"];
-
         $oldComment = $request->body;
         $newComment = str_replace($blockWords, "**", $oldComment);
+        $data['body']=$newComment;
+        return $this->redirectTo( Comment::create($data));
 
-
-            $insert = Comment::create(["guest_name" => $request->guest_name, "body" => $newComment, "articale_id" => $request->articale_id]);
-            return redirect()->back()->with("message","Comment Send");
     }
 }

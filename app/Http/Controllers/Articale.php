@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreArticaleRequest;
+use App\Http\Requests\UpdateArticaleRequest;
 use App\Media\Media;
 use App\Models\Articale as ModelsArticale;
 use App\Models\Category;
@@ -20,66 +22,43 @@ class Articale extends Controller
     //   dd($categories);
         return view('articales.create',compact("categories"));
     }
-    public function store(Request $request)
+    public function store(StoreArticaleRequest $request)
     {
-        // dd($request->image);
-        if ($request->has('image')) {
+        $data = $request->except('image',"_token");
+        if ($request->hasFile('image')) {
             $newImage = Media::upload($request->file('image'), public_path('images/articales'));
             $data['image'] = $newImage;
-            $oldimage = ModelsArticale::select('image')->where('id', "=", $request->id)->get();
-            $patholdimage = public_path('images/articales/' . $oldimage);
-            Media::delete($patholdimage);
         }
-        $validation = $request->validate([
-            'title' => 'required',
-            'body' => 'required',
-            'category_id' => "required"
-        ]);
-        if ($validation) {
-            ModelsArticale::create([
-                "title" => $request->title,
-                "body" => $request->body,
-                "image" => $newImage,
-                "category_id" => $request->category_id
-            ]);
-            return redirect()->back()->with(["message" => "Article Created"]);
-        } else {
-            return redirect()->back()->with(["error" => "Article Not Created"]);
-        }
+           return $this->redirectTo(ModelsArticale::create($data));
+
     }
 
 
-    public function edit($id)
+    public function edit(ModelsArticale $articale)
     {
-        $articale = $this->getbyid($id);
-        $categories = Category::all();
 
+        $categories = Category::all();
         return view("articales.update", ["articale" =>compact('articale'),"categories"=>compact("categories")]);
     }
-    public function update(Request $request)
+    public function update(UpdateArticaleRequest $request ,ModelsArticale $articale)
     {
-        // dd($request);
-        if ($request->has('image')) {
+        // dd($articale->id);
+        $data = $request->except('image','_token','_method');
+        if ($request->hasFile('image')) {
             $newImage = Media::upload($request->file('image'), public_path('images/articales'));
             $data['image'] = $newImage;
-            $oldimage = ModelsArticale::select('image')->where('id', "=", $request->id)->get();
-            $patholdimage = public_path('images/articales/' . $oldimage);
+            $patholdimage = public_path('images\\articales\\' . $request->image);
             Media::delete($patholdimage);
         }
-        // echo($newImage);
-            ModelsArticale::where("id", $request->id)->update([
-                "title" => $request->title,
-                "body" => $request->body,
-                "image" => $newImage,
-                "category_id" => $request->category_id
-            ]);
-            return redirect('articale/list')->with("message", "updated");
-        }
+        return $this->redirectTo(ModelsArticale::where("id", $articale->id)->update($data));
+    }
 
-    public function delete($id)
+    public function delete(ModelsArticale $articale)
     {
-        ModelsArticale::destroy($id);
-        return redirect()->back()->with("message", "Deleted");
+        ModelsArticale::destroy($articale->id);
+        $patholdimage = public_path('images/articales/' . $articale->image);
+        Media::delete($patholdimage);
+        return redirect()->back()->with("mes", "Deleted");
     }
     public function getbyid($id)
     {

@@ -10,6 +10,10 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{{route('articale.list')}}">Home <span class="sr-only">(current)</span></a>
             </li>
+
+
+        @if (Session::has('loginId'))
+
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                     aria-expanded="false">
@@ -20,6 +24,21 @@
                     <a class="dropdown-item" href="{{route('articale.list')}}">List</a>
                 </div>
             </li>
-        </ul>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                    aria-expanded="false">
+                    Category
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{{route('category.create')}}">Add</a>
+                    <a class="dropdown-item" href="{{route('category.list')}}">List</a>
+                </div>
+            </li>
+
+                </ul>
+                <form action="{{route('logout')}}">
+                <button class="btn btn-danger">Logout</button>
+                </form>
+@endif
     </div>
 </nav>

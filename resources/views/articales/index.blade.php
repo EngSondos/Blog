@@ -1,17 +1,18 @@
 @extends('../parent')
 @section('title', 'List All Articles')
 @section('content')
+@include('component.message')
+
     <div class="offset-2 mt-5 col-8 text-primary h1 text-center !important">
         All Articales
     </div>
     @foreach ($articales as $articale)
         <div class="offset-3 col-6 mt-5 text-center">
-            {{ $message ?? '' }}
             <div class="text-right">
                 <div class="text-right mb-2" style="display: inline-block">
                     <form action="{{ url('articale\\edit\\') . $articale->id }}">
                         <div class="btn-group" role="group" aria-label="Basic example">
-                            <input type="submit" value="E" class="btn btn-primary">
+                            <input type="submit" value="Edit" class="btn btn-primary">
                         </div>
                     </form>
                 </div>

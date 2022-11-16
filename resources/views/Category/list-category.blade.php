@@ -16,8 +16,18 @@
                 <tr>
                     <td>{{ $c->id }}</td>
                     <td>{{ $c->name }}</td>
-                    <td><a href="/edit-category/{{ $c->id }}" class="btn btn-outline-primary w-50">Edit</a></td>
-                    <td><a href="/delete-category/{{ $c->id }}" class="btn btn-outline-danger w-50">Delete</a></td>
+                  <td> <form action="{{ url('category\\edit\\') . $c->id }}" >
+                    <button class="btn btn-outline-primary w-50"> Edit </button>
+                </form></td>
+                   <td><form action="{{ url('category\\delete\\') . $c->id }}" >
+                    <button class="btn btn-outline-danger w-50"> Delete </button>
+
+                 </form>
+
+                </td>
+
+                    {{-- <td><a href="/edit-category/{{ $c->id }}" class="btn btn-outline-primary w-50">Edit</a></td>
+                    <td><a href="/delete-category/{{ $c->id }}" class="btn btn-outline-danger w-50">Delete</a></td> --}}
                 </tr>
             @endforeach
         </table>

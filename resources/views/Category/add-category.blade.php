@@ -10,7 +10,7 @@
                 {{ Session::get('category_created') }}
             </div>
         @endif
-        <form action="{{ route('category.create') }}" method="POST">
+        <form action="{{ route('category.store') }}" method="POST">
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label"></label>

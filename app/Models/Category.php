@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
+    protected $fillable = ["name"];
+
     protected $table = "categories";
     public function articale() {
         return $this->hasMany(Articale::class);
