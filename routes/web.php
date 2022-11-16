@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 Route::get("login",[LoginController::class,'login'])->name('Login');
 Route::Post("loginrequest",[LoginController::class,'LoginRequest'])->name('LoginR');
 Route::get('logout',[LogoutController::class,'logout'])->name('logout');
-Route::get("/", [Articale::class, 'list'])->middleware('isLoggedIn');
+Route::get("/", [Articale::class, 'list']);
 Route::middleware('isLoggedIn')->prefix("articale")->group(function () {
     Route::name('articale.')->group(function () {
         Route::controller(Articale::class)->group(function () {
@@ -48,4 +48,4 @@ Route::middleware('isLoggedIn')->prefix("category")->group(function () {
         });
     });
 });
-Route::post('comment/store', [Comments::class, 'store'])->name("comment.store")->middleware('isLoggedIn');
+Route::post('comment/store', [Comments::class, 'store'])->name("comment.store");
